@@ -5,7 +5,7 @@ from django.db import models
 class store(models.Model):
     name = models.CharField(max_length=200)
     address = models.CharField(max_length=100, unique=True)
-    open_time  = models.TimeField()
+    schedule  = models.TimeField()
 
 
     def __str__(self):
