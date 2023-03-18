@@ -83,3 +83,8 @@ pip install -r requirements.txt
             "price": 40
             }
         - Get all the products of one store
+
+
+To use the Postman collection:
+    1) Set on your variables the variable:
+        local-django = http://127.0.0.1:8000/
