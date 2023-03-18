@@ -41,8 +41,45 @@ pip install -r requirements.txt
 
 
 3) API REST:
-        - Add product
+    In local case baseurl =  http://127.0.0.1:8000/
+        - Add product:
+            <baseurl>product/
+            data to send:
+            {
+                "branch": "some2",
+                "product_type": "cookie",
+                "calories": 500,
+                "saturated_fats_percentage": 8,
+                "sugar_percentage": 10
+            }
+
         - Modify product
+            <baseurl>product/<branch_name>
+            data to send to modify calories for example:
+            {
+                "branch": "some",
+                "product_type": "apple",
+                "calories": 400,
+            }
         - Add store
+            <baseurl>store/
+            data to send :
+            {
+                "name": "AppleStore",
+                "address": "Carrer de Gran Via 456",
+                "schedule": "8:00 - 16:00"
+            }
         - Assign price of product in a store
+            <baseurl>price/
+            data to send:
+            {
+            "store": {
+                    "name": "AppleStore"
+                },
+            "product": {
+                    "product_type": "cookie",
+                    "branch": "some2"
+                },
+            "price": 40
+            }
         - Get all products of one store
