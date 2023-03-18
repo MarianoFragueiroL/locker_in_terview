@@ -10,6 +10,3 @@ class store_product(models.Model):
     price  = models.IntegerField(default=0)
     amount  = models.IntegerField(default=1)
 
-
-    def __str__(self):
-        return self.name
