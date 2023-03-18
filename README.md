@@ -82,4 +82,4 @@ pip install -r requirements.txt
                 },
             "price": 40
             }
-        - Get all products of one store
+        - Get all the products of one store
