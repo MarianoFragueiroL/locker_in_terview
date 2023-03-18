@@ -26,6 +26,12 @@ class ProductView(APIView):
 
 
     def post(self, request, *args, **kwargs):
+        product = (self.model.objects.filter(
+            branch=request.data['branch'],
+            product_type=request.data['product_type'],
+            ))
+        if len(product)>0:
+            raise NotFound('Product already exists for this brunch')
         serializer = self.serializer(data=request.data)
         try:
             if serializer.is_valid():
