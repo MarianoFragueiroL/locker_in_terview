@@ -12,7 +12,7 @@ class CSVFile():
     
     def read_file(self):
 
-        with open('archivo.csv', newline='') as csvfile:
+        with open( self.file_name+'.csv', newline='') as csvfile:
             reader = csv.DictReader(csvfile)
 
 
