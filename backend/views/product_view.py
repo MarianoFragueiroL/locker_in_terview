@@ -10,13 +10,12 @@ from ..serializers import productSerializer
 class ProductView(APIView):
     model = product
     serializer = productSerializer
-    lookup_field = 'branch'
 
     def put(self, request, *args, **kwargs):
         try:
             instance = self.model.objects.get(branch=kwargs['branch'])
         except self.model.DoesNotExist:
-            raise NotFound('Prduct not found')
+            raise NotFound('Product not found')
         try:
             product_serialized = self.serializer(instance, data=request.data)
             product_serialized.is_valid(raise_exception=True)
