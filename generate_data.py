@@ -12,7 +12,6 @@ def generate_data(amount_of_files, data_in_file=50):
     """
         This function creates a number of files indicated creating the csv with the fields indicated by the task
     """
-    print(amount_of_files, data_in_file)
     for index in range(int(amount_of_files)):
         fields = ['Marca', 'Tipo de producto', 'Valor calórico', '% de grasas saturadas', '% de azúcar', 'Establecimiento', 'Dirección', 'Horario', 'Precio']
         file_name = 'file_{}'.format(index)
