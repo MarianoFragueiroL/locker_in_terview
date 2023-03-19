@@ -53,7 +53,11 @@ class Product_Store_View(APIView):
                 store = store,
                 product = product
             )
-            return Response(status=status.HTTP_201_CREATED, data='price for product added')
+            if store_product.id:
+                return Response(status=status.HTTP_201_CREATED, data='price for product added')
+            else:
+                return Response(status=status.HTTP_409_CONFLICT, data='Error saving the price for product')
+
         except Exception as error:
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR, data= str(error))
 
