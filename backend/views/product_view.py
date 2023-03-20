@@ -26,14 +26,16 @@ class ProductView(APIView):
 
 
     def post(self, request, *args, **kwargs):
-        product = (self.model.objects.filter(
-            branch=request.data['branch'],
-            product_type=request.data['product_type'],
-            ))
-        if len(product)>0:
-            return Response(status=status.HTTP_409_CONFLICT, data='Product already exists for this brunch')
-        serializer = self.serializer(data=request.data)
         try:
+            (self.model.objects.get(
+                branch=request.data['branch'],
+                product_type=request.data['product_type'],
+                ))
+            return Response(status=status.HTTP_409_CONFLICT, data='Product already exists for this brand')
+        except self.model.DoesNotExist:
+            product = None
+        try:
+            serializer = self.serializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()
                 return Response(status=status.HTTP_201_CREATED, data='Product created')
