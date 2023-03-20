@@ -28,7 +28,6 @@ def generate_data(amount_of_files, data_in_file=50):
             ## Makes sure the the open time is grater than the close time
             open_time = random.randint(0,16)
             close_time = random.randint(open_time,23)
-            # schedule = f'{open_time}:00 - {close_time}:00'
             price = round(random.uniform(1, 10), 2)
             data.append([brand, product_type, calories, saturated_fats_percentage, sugar_percentage, store, address, open_time,close_time, price])
         csv_file.write_file(data)
