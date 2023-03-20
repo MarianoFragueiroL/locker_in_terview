@@ -31,7 +31,7 @@ class ProductView(APIView):
             product_type=request.data['product_type'],
             ))
         if len(product)>0:
-            raise NotFound('Product already exists for this brunch')
+            return Response(status=status.HTTP_409_CONFLICT, data='Product already exists for this brunch')
         serializer = self.serializer(data=request.data)
         try:
             if serializer.is_valid():
