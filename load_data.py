@@ -55,7 +55,6 @@ def main():
             }
             requests.post(set_price_url, json=data_to_set_price)
             
-        break
 
 
 
