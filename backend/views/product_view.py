@@ -27,11 +27,15 @@ class ProductView(APIView):
 
     def post(self, request, *args, **kwargs):
         try:
-            (self.model.objects.get(
+            product = (self.model.objects.get(
                 branch=request.data['branch'],
                 product_type=request.data['product_type'],
                 ))
-            return Response(status=status.HTTP_409_CONFLICT, data='Product already exists for this brand')
+            response = { 
+                "error" : "Product already exists for this brand", 
+                "id":product.id
+            }
+            return Response(status=status.HTTP_409_CONFLICT, data= response)
         except self.model.DoesNotExist:
             pass
         try:
