@@ -13,10 +13,10 @@ class StoreView(APIView):
 
     def post(self, request, *args, **kwargs):
         try:
-            serializer = self.serializer(data=request.data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(status=status.HTTP_201_CREATED, data='Store created')
+            store_serializered = self.serializer(data=request.data)
+            if store_serializered.is_valid():
+                store_serializered.save()
+                return Response(status=status.HTTP_201_CREATED, data= store_serializered.data)
             store = self.model.objects.get(address=request.data['address'])
             response = {
                 'error':'store exits in this address',
