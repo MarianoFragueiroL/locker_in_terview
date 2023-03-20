@@ -75,7 +75,7 @@ pip install -r requirements.txt
             }
         - Assign price of product in a store
             Method: POST
-            url = <baseurl>price/
+            url = <baseurl>price
             data to send:
             {
             "store": {
