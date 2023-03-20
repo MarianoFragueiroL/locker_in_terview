@@ -17,6 +17,11 @@ class StoreView(APIView):
             if serializer.is_valid():
                 serializer.save()
                 return Response(status=status.HTTP_201_CREATED, data='Store created')
-            return Response(status=status.HTTP_400_BAD_REQUEST, data= serializer.errors)
+            store = self.model.objects.get(address=request.data['address'])
+            response = {
+                'error':'store exits in this address',
+                'id' : store.id
+            }
+            return Response(status=status.HTTP_400_BAD_REQUEST, data= response)
         except Exception as error:
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR, data= error)
