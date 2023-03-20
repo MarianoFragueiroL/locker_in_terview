@@ -49,8 +49,8 @@ pip install -r requirements.txt
                 "branch": "some2",
                 "product_type": "cookie",
                 "calories": 500,
-                "saturated_fats_percentage": 8,
-                "sugar_percentage": 10
+                "saturated_fats_percentage": 8.1,
+                "sugar_percentage": 10.2
             }
 
         - Modify product
@@ -74,7 +74,8 @@ pip install -r requirements.txt
             data to send:
             {
             "store": {
-                    "name": "AppleStore"
+                    "name": "AppleStore",
+                    "address": "Carrer de Gran Via 456"
                 },
             "product": {
                     "product_type": "cookie",
