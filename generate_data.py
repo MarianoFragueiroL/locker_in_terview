@@ -24,7 +24,7 @@ def generate_data(amount_of_files, data_in_file=50):
             saturated_fats_percentage = round(random.uniform(0, 30), 2)
             sugar_percentage = round(random.uniform(0, 30), 2)
             store = f'Establecimiento{i//10}'
-            address = f'Dirección{i//10}'
+            address = f'Dirección {i}'
             ## Makes sure the the open time is grater than the close time
             open_time = random.randint(0,16)
             close_time = random.randint(open_time,23)
