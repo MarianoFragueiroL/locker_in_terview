@@ -55,7 +55,7 @@ class Product_Store_View(APIView):
         if store_product is not None:
             store_product.price = product_price
             store_product.save()
-            return Response(status=status.HTTP_201_CREATED, data='price updated')
+            return Response(status=status.HTTP_200_OK, data='price updated')
         try:
             new_price = self.model.objects.create(
                 price = product_price,
