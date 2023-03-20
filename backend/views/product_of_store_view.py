@@ -17,7 +17,7 @@ class Product_Store_View(APIView):
     def get(self, request, *args, **kwargs):
         try:
             # query = request.POST.dict()
-            store = self.store_model.objects.get(name= kwargs['name'])
+            store = self.store_model.objects.get(id= kwargs['id'])
             filters = {
                 'store': store,
             }

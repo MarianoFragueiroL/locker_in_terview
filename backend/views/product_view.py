@@ -13,7 +13,7 @@ class ProductView(APIView):
 
     def put(self, request, *args, **kwargs):
         try:
-            instance = self.model.objects.get(branch=kwargs['branch'])
+            instance = self.model.objects.get(id=kwargs['id'])
         except self.model.DoesNotExist:
             raise NotFound('Product not found')
         try:
@@ -33,7 +33,7 @@ class ProductView(APIView):
                 ))
             return Response(status=status.HTTP_409_CONFLICT, data='Product already exists for this brand')
         except self.model.DoesNotExist:
-            product = None
+            pass
         try:
             serializer = self.serializer(data=request.data)
             if serializer.is_valid():
