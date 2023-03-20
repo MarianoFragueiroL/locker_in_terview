@@ -1,5 +1,6 @@
 import requests
 import os
+import json
 
 from pathlib import Path
 from backend.utils.csv_file import CSVFile
@@ -18,7 +19,7 @@ def main():
         csv_file = CSVFile(file_name)
         csv_data = csv_file.read_file()
         for row in csv_data:
-            create_product_url = main_url + "product/"
+            create_product_url = main_url + "product"
             data_product_to_create = {
                 "branch": row['Marca'],
                 "product_type": row['Tipo de producto'],
@@ -26,33 +27,35 @@ def main():
                 "saturated_fats_percentage": float(row['% de grasas saturadas']),
                 "sugar_percentage": float(row['% de azúcar'])
             }
-            response = requests.post(url=create_product_url, json=data_product_to_create)
-            if response.status_code == 500:
+            product_response = requests.post(url=create_product_url, json=data_product_to_create)
+            if product_response.status_code == 500:
                 continue
-            create_store_url = main_url + "store/"
+            product_id =json.loads(product_response.text)['id']
+ 
+            create_store_url = main_url + "store"
             data_store_to_create = {
                 "name": row['Establecimiento'],
                 "address": row['Dirección'],
-                "schedule": row['Horario']
+                "open_time": row['Horario de apertura'],
+                "close_time": row['Horario de cierre']
             }
-            response = requests.post(create_store_url, json=data_store_to_create)
-
-            if response.status_code == 500:
+            store_response = requests.post(create_store_url, json=data_store_to_create)
+            store_id =json.loads(store_response.text)['id']
+            if store_response.status_code == 500:
                 continue
-            set_price_url = main_url + "price/"
+            set_price_url = main_url + "price"
             data_to_set_price = {
                 "store": {
-                        "name": row['Establecimiento'],
-                        "address": row['Dirección']
+                        "id": int(store_id)
                     },
                 "product": {
-                    "branch": row['Marca'],
-                    "product_type": row['Tipo de producto'],
+                    "id": int(product_id)
                     },
                 "price": float(row['Precio'])
             }
             requests.post(set_price_url, json=data_to_set_price)
-
+            
+        break
 
 
 
