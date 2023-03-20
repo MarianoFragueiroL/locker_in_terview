@@ -12,8 +12,8 @@ class StoreView(APIView):
     serializer = storeSerializer
 
     def post(self, request, *args, **kwargs):
-        serializer = self.serializer(data=request.data)
         try:
+            serializer = self.serializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()
                 return Response(status=status.HTTP_201_CREATED, data='Store created')
