@@ -79,12 +79,10 @@ pip install -r requirements.txt
             data to send:
             {
             "store": {
-                    "name": "McDonals",
-                    "address": "Carrer de Gran Via 456"
+                    "id": <int:id>
                 },
             "product": {
-                    "product_type": "BigMac",
-                    "branch": "MC"
+                    "id": <int:id>
                 },
             "price": 10
             }
