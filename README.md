@@ -59,8 +59,8 @@ pip install -r requirements.txt
             url = <baseurl>product/<id>
             data to send to modify calories for example:
             {
-                "branch": "some",
-                "product_type": "apple",
+                "branch": "MC",
+                "product_type": "BigMac",
                 "calories": 400,
             }
         - Add store
@@ -79,14 +79,14 @@ pip install -r requirements.txt
             data to send:
             {
             "store": {
-                    "name": "AppleStore",
+                    "name": "McDonals",
                     "address": "Carrer de Gran Via 456"
                 },
             "product": {
-                    "product_type": "cookie",
-                    "branch": "some2"
+                    "product_type": "BigMac",
+                    "branch": "MC"
                 },
-            "price": 40
+            "price": 10
             }
         - Get all the products of one store
             Method: GET
